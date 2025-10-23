@@ -2,24 +2,133 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Загрузка DarkRP</title>
+    <title>Загрузка AdamanRP</title>
     <style>
-        body { background: #181818; color: #fff; font-family: Segoe UI, Arial, sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; }
-        h1 { margin-bottom: 40px; font-size: 2.3em; font-weight: 300; letter-spacing: 2px; }
-        .progress { width: 300px; height: 8px; background: #222; border-radius: 4px; overflow: hidden; margin-bottom: 20px; }
-        .progress-bar { width: 0%; height: 100%; background: linear-gradient(90deg, #4e54c8, #8f94fb); transition: width 0.3s; }
-        .status { font-size: 1.1em; color: #aaa; }
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        body {
+            background: #181818;
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .logo {
+            margin-bottom: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .logo-anim {
+            position: relative;
+            width: 92px;
+            height: 92px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+        .logo-anim .circle {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid #4e54c8;
+            box-shadow: 0 0 18px 6px #8f94fb66;
+            animation: spin 2.2s linear infinite;
+            z-index: 0;
+        }
+        .logo-anim .circle2 {
+            border: 2px dashed #8f94fb;
+            box-shadow: 0 0 8px 2px #4e54c877;
+            animation: spin-rev 4s linear infinite;
+            z-index: 1;
+        }
+        .logo-anim .letter {
+            font-size: 3.7em;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 0 18px #4e54c8bb, 0 0 32px #8f94fb77;
+            z-index: 2;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(360deg);}
+        }
+        @keyframes spin-rev {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(-360deg);}
+        }
+        .server-title {
+            font-size: 2.4em;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #e0e0ff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 40px;
+            font-size: 2em;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+        .progress {
+            width: 300px;
+            height: 8px;
+            background: #222;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #4e54c8, #8f94fb);
+            transition: width 0.3s;
+        }
+        .status {
+            font-size: 1.1em;
+            color: #aaa;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+    <div class="logo">
+        <div class="logo-anim">
+            <div class="circle"></div>
+            <div class="circle circle2"></div>
+            <span class="letter">A</span>
+        </div>
+        <div class="server-title">AdamanRP</div>
+    </div>
     <h1>Добро пожаловать на DarkRP сервер!</h1>
-    <div class="progress"><div class="progress-bar" id="bar"></div></div>
+    <div class="progress">
+        <div class="progress-bar" id="bar"></div>
+    </div>
     <div class="status" id="status">Подключение...</div>
     <script>
         let bar = document.getElementById('bar');
         let status = document.getElementById('status');
         let percent = 0;
-        let loadingTexts = ["Подключение...", "Загрузка ресурсов...", "Получение информации...", "Почти готово..."];
+        let loadingTexts = [
+            "Подключение...",
+            "Загрузка ресурсов...",
+            "Получение информации...",
+            "Почти готово..."
+        ];
         let step = 0;
         let interval = setInterval(function() {
             if(percent < 100) {
