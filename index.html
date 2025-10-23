@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Загрузка AdamanRP</title>
+    <title>AdamanRP Loading</title>
     <style>
         html, body {
             width: 100vw;
@@ -21,100 +21,63 @@
             align-items: center;
             min-height: 100vh;
         }
-        .logo {
-            margin-bottom: 32px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .logo-anim {
-            position: relative;
-            width: 92px;
-            height: 92px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 12px;
-        }
-        .logo-anim .circle {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 4px solid #4e54c8;
-            box-shadow: 0 0 18px 6px #8f94fb66;
-            animation: spin 2.2s linear infinite;
-            z-index: 0;
-        }
-        .logo-anim .circle2 {
-            border: 2px dashed #8f94fb;
-            box-shadow: 0 0 8px 2px #4e54c877;
-            animation: spin-rev 4s linear infinite;
-            z-index: 1;
-        }
-        .logo-anim .letter {
-            font-size: 3.7em;
-            font-weight: bold;
-            color: #fff;
-            text-shadow: 0 0 18px #4e54c8bb, 0 0 32px #8f94fb77;
-            z-index: 2;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg);}
-            100% { transform: rotate(360deg);}
-        }
-        @keyframes spin-rev {
-            0% { transform: rotate(0deg);}
-            100% { transform: rotate(-360deg);}
-        }
-        .server-title {
+        .welcome {
             font-size: 2.4em;
-            font-weight: 600;
+            font-weight: 500;
             letter-spacing: 2px;
-            color: #e0e0ff;
-            margin-bottom: 20px;
             text-align: center;
+            margin-bottom: 60px;
+            /* Свечение */
+            text-shadow:
+                0 0 16px #a259ff,
+                0 0 32px #a259ff,
+                0 0 64px #a259ff80;
+            /* Плавная анимация свечения */
+            animation: glow 2.4s ease-in-out infinite alternate;
         }
-        h1 {
-            margin-bottom: 40px;
-            font-size: 2em;
-            font-weight: 300;
-            letter-spacing: 2px;
-            text-align: center;
+        @keyframes glow {
+            0% {
+                text-shadow:
+                    0 0 8px #a259ff,
+                    0 0 16px #a259ff80,
+                    0 0 24px transparent;
+            }
+            100% {
+                text-shadow:
+                    0 0 24px #a259ff,
+                    0 0 64px #a259ff,
+                    0 0 96px #a259ff80;
+            }
         }
         .progress {
-            width: 300px;
-            height: 8px;
-            background: #222;
-            border-radius: 4px;
+            width: 340px;
+            height: 12px;
+            background: #232232;
+            border-radius: 6px;
             overflow: hidden;
-            margin-bottom: 20px;
+            margin-bottom: 28px;
+            box-shadow: 0 0 10px #a259ff77;
         }
         .progress-bar {
             width: 0%;
             height: 100%;
-            background: linear-gradient(90deg, #4e54c8, #8f94fb);
-            transition: width 0.3s;
+            background: linear-gradient(90deg, #a259ff 0%, #6e44ff 100%);
+            box-shadow: 0 0 20px #a259ff99;
+            border-radius: 6px 0 0 6px;
+            transition: width 0.5s cubic-bezier(.45,.03,.52,.96);
         }
         .status {
             font-size: 1.1em;
-            color: #aaa;
+            color: #b7aaff;
             text-align: center;
+            margin-top: 10px;
+            letter-spacing: 1px;
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
-    <div class="logo">
-        <div class="logo-anim">
-            <div class="circle"></div>
-            <div class="circle circle2"></div>
-            <span class="letter">A</span>
-        </div>
-        <div class="server-title">AdamanRP</div>
-    </div>
-    <h1>Добро пожаловать на DarkRP сервер!</h1>
+    <div class="welcome">Добро пожаловать на AdamanRP!</div>
     <div class="progress">
         <div class="progress-bar" id="bar"></div>
     </div>
