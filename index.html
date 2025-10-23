@@ -27,22 +27,18 @@
             letter-spacing: 2px;
             text-align: center;
             margin-bottom: 60px;
-            /* Мягкое небольшое свечение */
-            text-shadow:
-                0 0 8px #a259ff88,
-                0 0 12px #a259ff44;
-            animation: glow 2.4s ease-in-out infinite alternate;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.3s cubic-bezier(.45,.03,.52,.96) forwards;
         }
-        @keyframes glow {
-            0% {
-                text-shadow:
-                    0 0 4px #a259ff44,
-                    0 0 8px #a259ff22;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            100% {
-                text-shadow:
-                    0 0 8px #a259ff88,
-                    0 0 12px #a259ff44;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
         .progress {
